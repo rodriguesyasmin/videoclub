@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Accueil />}></Route>
         <Route path="/films" element={<Films />}></Route>
+        <Route path="/film/:id" element={<TuileFilm />} />
       </Routes>
     </Router>
   );
