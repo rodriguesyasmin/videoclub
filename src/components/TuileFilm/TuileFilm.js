@@ -9,9 +9,12 @@ function TuileFilm(props) {
   return (
     <article>
       <h2>{props.data.titre}</h2>
-      <p>{props.data.realisateur}</p>
+      <img
+        src={`img/${props.data.titreVignette}`}
+        alt={`${props.data.titre}`}
+      />
+      <p>{props.data.realisation}</p>
       <p>{props.data.annee}</p>
-      <p>{props.data.id}</p>
     </article>
   );
 }
