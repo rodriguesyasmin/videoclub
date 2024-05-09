@@ -1,11 +1,6 @@
 import "./TuileFilm.css";
 
 function TuileFilm(props) {
-  console.log(props.data);
-  if (!props.data) {
-    return <div>Dados do filme indisponíveis</div>;
-  }
-
   return (
     <article>
       <h2>{props.data.titre}</h2>

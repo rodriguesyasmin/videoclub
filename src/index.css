@@ -1,13 +1,14 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/*SETTINGS */
+@import url(./styles/1-settings/variables.css);
+/*TOOLS */
+/* @import url(./styles/2-tools); */
+/*GENERIC */
+@import url(./styles/3-generic/reset.css);
+/*ELEMENTS */
+@import url(./styles/4-elements/typography.css);
+/*OBJECTS */
+@import url(./styles/5-objects/wrapper.css);
+/*COMPONENTS */
+/* @import url(./styles/6-components/); */
+/*UTILITIES */
+/* @import url(./styles/7-utilities/); */

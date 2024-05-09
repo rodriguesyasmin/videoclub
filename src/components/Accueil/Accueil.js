@@ -3,9 +3,11 @@ import "./Accueil.json";
 
 function Accueil() {
   return (
-    <main>
-      <h2>Accueil</h2>
-    </main>
+    <body>
+      <main>
+        <h2>Accueil</h2>
+      </main>
+    </body>
   );
 }
 

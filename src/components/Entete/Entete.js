@@ -5,10 +5,11 @@ function Entete() {
   return (
     <header className="entete">
       <NavLink to="/">
-        <h1>Videoclub</h1>
+        <img src={`img/logo/devFlix.webp`} />
       </NavLink>
       <nav>
-        <NavLink to="Films">Films</NavLink>
+        <NavLink to="Films">Movie</NavLink>
+        <NavLink to="Films">Subscribe</NavLink>
       </nav>
     </header>
   );

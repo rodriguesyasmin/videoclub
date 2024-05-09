@@ -1,0 +1,9 @@
+header {
+  text-align: center;
+  & img {
+    max-width: 10vw;
+  }
+  & nav {
+    text-align: right;
+  }
+}
