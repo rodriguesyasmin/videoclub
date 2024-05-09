@@ -8,8 +8,12 @@ function Entete() {
         <img src={`img/logo/devFlix.webp`} />
       </NavLink>
       <nav>
-        <NavLink to="Films">Movie</NavLink>
-        <NavLink to="Films">Subscribe</NavLink>
+        <NavLink className="NavLink" to="Films">
+          Movie
+        </NavLink>
+        <NavLink className="NavLink" to="Films">
+          Subscribe
+        </NavLink>
       </nav>
     </header>
   );

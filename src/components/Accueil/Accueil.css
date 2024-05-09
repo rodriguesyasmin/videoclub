@@ -1,0 +1,34 @@
+body {
+  background-color: var(--blue);
+  height: 100vh;
+}
+.banner {
+  height: 85vh;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: auto;
+  }
+
+  & .content {
+    position: absolute;
+    text-align: right;
+    top: 60%;
+    right: 5%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+    color: white;
+  }
+
+  & .content p {
+    margin: 0;
+    padding: 10px;
+    font-size: 20px;
+    text-align: right;
+    color: var(--gray);
+  }
+  & .content h1 {
+    color: var(--dark-yellow);
+  }
+}

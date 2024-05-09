@@ -1,9 +1,16 @@
 header {
   text-align: center;
+  height: 18vh;
   & img {
     max-width: 10vw;
+    padding: 5px;
   }
   & nav {
     text-align: right;
+    & .NavLink {
+      text-decoration: none;
+      padding: 50px;
+      color: var(--gray);
+    }
   }
 }
