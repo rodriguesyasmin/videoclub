@@ -18,7 +18,6 @@ function Films() {
         setListeFilms(data);
       });
   }, [urlFiltre]);
-
   const tuilesFilm = listeFilms.map((film, index) => {
     return (
       <Link to={`/films/${film.id}`} className="film" key={index}>
