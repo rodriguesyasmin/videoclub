@@ -2,7 +2,7 @@ import "./TuileFilm.css";
 
 function TuileFilm(props) {
   return (
-    <article>
+    <article data-testid={`tuile-film-${props.id}`}>
       <h2>{props.data.titre}</h2>
       <img
         src={`img/${props.data.titreVignette}`}

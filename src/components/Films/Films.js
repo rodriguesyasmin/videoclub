@@ -21,7 +21,7 @@ function Films() {
   const tuilesFilm = listeFilms.map((film, index) => {
     return (
       <Link to={`/films/${film.id}`} className="film" key={index}>
-        <TuileFilm data={film} />
+        <TuileFilm data={film} id={index} />
       </Link>
     );
   });
