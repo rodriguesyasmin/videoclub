@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Entete from "../Entete/Entete";
 import "./App.css";
 import Film from "../ChaqueFilm/Film";
@@ -16,6 +12,7 @@ import { useState } from "react";
 export const AppContext = React.createContext();
 
 function App() {
+  const location = useLocation();
   const [usager, setUsager] = useState({ estLog: false, usager: "" });
 
   function login(e) {
@@ -35,19 +32,18 @@ function App() {
 
   return (
     <AppContext.Provider value={usager}>
-      <Router>
-        <Entete handleLogin={login} />
-        <Routes>
+      <Entete handleLogin={login} />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.key}>
           <Route path="/" element={<Accueil />}></Route>
           <Route path="/films" element={<Films />}></Route>
           <Route path="/films/:id" element={<Film />} />
-
           <Route
             path="/admin"
             element={usager.estLog ? <Admin /> : <Navigate to="/" />}
           />
         </Routes>
-      </Router>
+      </AnimatePresence>
     </AppContext.Provider>
   );
 }
