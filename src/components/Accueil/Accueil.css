@@ -1,35 +1,50 @@
 body {
   background-color: var(--blue);
-  height: 100vh;
 }
 .banner {
-  height: 85vh;
+  height: 75vh;
   overflow: hidden;
-
   & img {
-    width: 100%;
-    height: auto;
+    opacity: 0.25;
   }
-
   & .content {
+    width: 60%;
     position: absolute;
     text-align: right;
     top: 60%;
     right: 5%;
     transform: translateY(-50%);
-    padding: 0 20px;
+    padding: 0 var(--space-base);
     color: white;
   }
-
   & .content p {
     margin: 0;
-    padding: 10px;
-    font-size: 20px;
+    padding: var(--space-base) 0;
+    font-size: 1rem;
     text-align: right;
     color: var(--gray);
   }
   & .content h1 {
     color: var(--dark-yellow);
+    padding: var(--space-base);
+  }
+  & .button-accueil {
+    background: var(--dark-purple);
+    border: none;
+    padding: var(--space-base) var(--space-small);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+  }
+  & .button-accueil:hover {
+    background-color: var(--purple);
+  }
+
+  & .button-accueil a {
+    text-decoration: none;
+    color: var(--dark-yellow);
   }
 }
-
