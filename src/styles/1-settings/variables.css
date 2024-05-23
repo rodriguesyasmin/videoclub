@@ -5,4 +5,9 @@
   --blue: #141126;
   --dark-yellow: #f4bf00;
   --gray: #e4e1e1;
+
+  --space-base: max(5px, 1vw);
+  --space-xmall: calc(var(--space-base) * 2);
+  --space-small: calc(var(--space-base) * 6);
+  --space-medium: calc(var(--space-base) * 10);
 }

@@ -43,7 +43,7 @@ function Films() {
     exit: { opacity: 0, y: 25, transition },
   };
   return (
-    <main>
+    <main className="wrapper">
       <ul>
         <li
           onClick={(e) => {
@@ -59,6 +59,7 @@ function Films() {
       <h2>Films</h2>
       {estCharge ? (
         <motion.div
+          className="films-grid"
           key="liste-film"
           initial="hidden"
           animate="visible"
