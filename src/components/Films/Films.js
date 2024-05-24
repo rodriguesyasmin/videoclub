@@ -3,13 +3,12 @@ import TuileFilm from "../TuileFilm/TuileFilm";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Filtre from "../Filtre/Filtre";
 
 function Films() {
   const urlListFilms =
     "https://four1f-tp1-rodriguesyasmin.onrender.com/api/films";
   const [urlFiltre, setUrlFiltre] = useState(urlListFilms);
-  // const [etat, setEtat] = useState(true);
-  // const [etat2, setEtat2] = useState(false);
   const [listeFilms, setListeFilms] = useState([]);
   const [estCharge, setEstCharge] = useState(false);
 
@@ -29,13 +28,7 @@ function Films() {
       </Link>
     );
   });
-  /**
-   *
-   */
-  function filtres(e) {
-    console.log("dans fonction filtres");
-    setUrlFiltre(`${urlListFilms}?ordre=annee&direction=asc&limit=5`);
-  }
+
   const transition = { duration: 1.5, ease: "easeInOut" };
   const animationBasVersHaut = {
     hidden: { opacity: 0, y: 25 },
@@ -44,18 +37,7 @@ function Films() {
   };
   return (
     <main className="wrapper">
-      <ul>
-        <li
-          onClick={(e) => {
-            filtres(e);
-          }}
-        >
-          Réealisateur alphabétique (A-Z)
-        </li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+   <Filtre setUrlFiltre={setUrlFiltre} urlListFilms={urlListFilms} />
       <h2>Films</h2>
       {estCharge ? (
         <motion.div
