@@ -1,30 +1,33 @@
+import React from "react";
 import "./Filtre.css";
 
 function Filtre({ setUrlFiltre, urlListFilms }) {
-  /**
-   * function qui sert a dynamiser l'url pour filtrer
-   * @param {*} ordre
-   * @param {*} direction
-   */
-  function filtres(ordre, direction = "asc") {
+  const filtres = [
+    {
+      ordre: "realisation",
+      direction: "asc",
+      filtre: "Réalisation alphabétique (A-Z)",
+    },
+    { ordre: "titre", direction: "asc", filtre: "Titre alphabétique (A-Z)" },
+    { ordre: "annee", direction: "desc", filtre: "Par année (du plus récent)" },
+    { ordre: "annee", direction: "asc", filtre: "Par année (du plus ancien)" },
+  ];
+
+  function aplicarFiltro(ordre, direction) {
     setUrlFiltre(`${urlListFilms}?ordre=${ordre}&direction=${direction}`);
   }
 
   return (
-    <div>
+    <div className="wrapper">
       <ul>
-        <li onClick={() => filtres("realisation", "asc")}>
-          Réalisation alphabétique (A-Z)
-        </li>
-        <li onClick={() => filtres("titre", "asc")}>
-          Titre alphabétique (A-Z)
-        </li>
-        <li onClick={() => filtres("annee", "desc")}>
-          Par année (du plus récent)
-        </li>
-        <li onClick={() => filtres("annee", "asc")}>
-          Par année (du plus ancien)
-        </li>
+        {filtres.map((filtre, index) => (
+          <li
+            key={index}
+            onClick={() => aplicarFiltro(filtre.ordre, filtre.direction)}
+          >
+            {filtre.filtre}
+          </li>
+        ))}
       </ul>
     </div>
   );
