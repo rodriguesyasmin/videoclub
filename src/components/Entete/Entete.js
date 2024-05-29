@@ -21,7 +21,7 @@ function Entete(props) {
         </NavLink>
         {context.isLogged == true ? (
           <NavLink className="NavLink" to="Admin">
-            <button>Logout</button>
+            <button onClick={props.handleLogout}>Logout</button>
           </NavLink>
         ) : (
           <form onSubmit={props.handleLogin}>

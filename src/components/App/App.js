@@ -61,8 +61,12 @@ function App() {
       setUsager(userData);
       localStorage.setItem("api-token", token);
     } else {
-      localStorage.removeItemItem("api-film-token", token);
+      localStorage.removeItem("api-film-token", token);
     }
+  }
+  function logout() {
+    setUsager({ isLogged: false });
+    localStorage.removeItem("api-film-token");
   }
 
   function jetonValide() {
@@ -84,7 +88,7 @@ function App() {
 
   return (
     <AppContext.Provider value={usager}>
-      <Entete handleLogin={login} />
+      <Entete handleLogin={login} handleLogout={logout} />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Accueil />}></Route>
