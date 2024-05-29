@@ -16,28 +16,25 @@ function Entete(props) {
         <NavLink className="NavLink" to="Films">
           Movie
         </NavLink>
-        {context.estLog ? (
-          <NavLink className="NavLink" to="Admin">
-            Admin
-          </NavLink>
-        ) : (
-          ""
-        )}
-
         <NavLink className="NavLink" to="Films">
           Subscribe
         </NavLink>
+        {context.isLogged == true ? (
+          <NavLink className="NavLink" to="Admin">
+            <button>Logout</button>
+          </NavLink>
+        ) : (
+          <form onSubmit={props.handleLogin}>
+            <input tyoe="text" name="courriel" placeholder="Email"></input>
+            <input
+              tyoe="password"
+              name="mdp"
+              placeholder="Mot de passe"
+            ></input>
+            <button>Login</button>
+          </form>
+        )}
       </nav>
-      <form onSubmit={props.handleLogin}>
-        {/* <input
-          ref={elUser}
-          tyoe="text"
-          name="user"
-          placeholder="Usager"
-        ></input> */}
-        <input tyoe="text" name="user" placeholder="Usager"></input>
-        <button>Login</button>
-      </form>
     </header>
   );
 }
