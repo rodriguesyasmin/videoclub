@@ -4,12 +4,13 @@ import Star from "../Rating/Rating";
 import App, { AppContext } from "../App/App";
 import "./Film.css";
 import SoumettreCommentaire from "../Note/Note";
+
 function Film() {
   const context = useContext(AppContext);
   const { id } = useParams();
   const [film, setFilm] = useState(null);
   const [userRating, setUserRating] = useState(0);
-  const [commentaireInput, setCommentaire] = useState("");
+  const [MoyenneRating, setMoyenneRating] = useState("Pas encore noté");
 
   const urlFilm = `https://four1f-tp1-rodriguesyasmin.onrender.com/api/films/${id}`;
 
@@ -23,6 +24,14 @@ function Film() {
       })
       .then((data) => {
         setFilm(data);
+        if (data.notes && data.notes.length > 0) {
+          const totalNotes = data.notes.reduce(
+            (total, note) => total + note,
+            0
+          );
+          const moyenne = totalNotes / data.notes.length;
+          setMoyenneRating(moyenne);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -47,52 +56,92 @@ function Film() {
     let putNote = await fetch(urlFilm, options),
       getFilm = await fetch(urlFilm);
     Promise.all([putNote, getFilm])
-      .then((response) => response[1].json())
-      .then((data) => {
-        setFilm((prevData) => ({ ...prevData, notes: data.notes }));
-        console.log(data.notes);
+      .then((responses) =>
+        Promise.all(responses.map((response) => response.json()))
+      )
+      .then(([putNoteResponse, getFilmResponse]) => {
+        setFilm((prevData) => ({ ...prevData, notes: getFilmResponse.notes }));
+        if (getFilmResponse.notes && getFilmResponse.notes.length > 0) {
+          const totalNotes = getFilmResponse.notes.reduce(
+            (total, note) => total + note,
+            0
+          );
+          const average = totalNotes / getFilmResponse.notes.length;
+          setMoyenneRating(average);
+        } else {
+          setMoyenneRating("Pas encore noté");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
+
   const handleCommentSubmitted = (nouveaucommentaires) => {
     setFilm((prevData) => ({ ...prevData, commentaire: nouveaucommentaires }));
   };
 
   return (
-    <div>
-      <h1>{film ? film.titre : "Données pas trouvées"}</h1>
+    <div className="film-container">
+      <div className="film-header">
+        <h1>{film ? film.titre : "Données pas trouvées"}</h1>
+      </div>
       {film && (
         <>
-          <img src={`/img/${film.titreVignette}`} alt={film.titre} />
-          <p>Réalisateur: {film.realisateur}</p>
-          <p>Année: {film.annee}</p>
-          <p>Description: {film.description}</p>
-          <div>
+          <img
+            className="film-img"
+            src={`/img/${film.titreVignette}`}
+            alt={film.titre}
+          />
+          <div className="film-details">
+            <p>Réalisateur: {film.realisation}</p>
+            <p>Année: {film.annee}</p>
+            <p>Description: {film.description}</p>
+          </div>
+          <div className="rating-container">
             {[1, 2, 3, 4, 5].map((value) => (
               <Star
                 key={value}
                 filled={value <= userRating}
                 onClick={() => setUserRating(value)}
+                className="star"
               />
             ))}
+            <p>
+              (Moyenne:{" "}
+              {typeof MoyenneRating === "number"
+                ? MoyenneRating.toFixed(1)
+                : MoyenneRating}
+              )
+            </p>
           </div>
-          <button onClick={submitRating}>Noter</button>
-          <p>Notes: {film.notes ? film.notes.join(", ") : "Pas encore noté"}</p>
-          {film.commentaire && film.commentaire.length > 0 ? (
-            <ul>
-              {film.commentaire.map((comment, index) => (
-                <li key={index}>{comment.commentaire}</li>
-              ))}
-            </ul>
-          ) : (
-            "Pas encore des commentaires"
-          )}
+          <button className="submit-rating-button" onClick={submitRating}>
+            Noter
+          </button>
+          <div className="film-notes"></div>
+          <div className="film-comments">
+            <h2>Commentaires:</h2>
+            {film.commentaire &&
+            Array.isArray(film.commentaire) &&
+            film.commentaire.length > 0 ? (
+              <ul className="comment-list">
+                {film.commentaire.map((comment, index) => (
+                  <li key={index}>{comment.commentaire}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>Pas encore des commentaires</p>
+            )}
+          </div>
 
           {context.isLogged && (
-            <SoumettreCommentaire
-              filmId={id}
-              commentaires={film.commentaire}
-              onCommentSubmitted={handleCommentSubmitted}
-            />
+            <div className="submit-comment">
+              <SoumettreCommentaire
+                filmId={id}
+                commentaires={film.commentaire}
+                onCommentSubmitted={handleCommentSubmitted}
+              />
+            </div>
           )}
         </>
       )}
