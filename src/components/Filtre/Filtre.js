@@ -19,6 +19,7 @@ function Filtre({ setUrlFiltre, urlListFilms }) {
 
   return (
     <div className="wrapper">
+      <div className="Filtre">
       <ul>
         {filtres.map((filtre, index) => (
           <li
@@ -29,6 +30,7 @@ function Filtre({ setUrlFiltre, urlListFilms }) {
           </li>
         ))}
       </ul>
+      </div>
     </div>
   );
 }
