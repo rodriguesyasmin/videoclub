@@ -1,16 +1,47 @@
 header {
   text-align: center;
-  height: 25vh;
+  height: 30vh;
+  position: relative;
+
   & img {
-    max-width: 10vw;
-    padding: 5px;
+    max-width: 12vw;
+    padding: var(--space-base);
   }
+
   & nav {
     text-align: right;
     & .NavLink {
       text-decoration: none;
-      padding: 50px;
+      padding: var(--space-base);
+      margin-bottom: var(--space-base);
       color: var(--gray);
     }
+  }
+
+  & form {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: var(--space-base);
+  }
+
+  & input {
+    margin-right: var(--space-base);
+    padding: 8px;
+  }
+
+  & button {
+    padding: var(--space-base); 
+    background-color: var(--purple);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  & button:hover {
+    color: var(--purple);
+    background-color: darkgray;
   }
 }

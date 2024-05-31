@@ -5,19 +5,18 @@ import { useContext } from "react";
 
 function Entete(props) {
   const context = useContext(AppContext);
-  //const elUser = useRef();
-  //console.log(props.estLog);
+
   return (
     <header className="entete">
       <NavLink to="/">
-        <img src={`img/logo/devFlix.webp`} />
+        <img src={`/img/logo/devFlix.webp`} />
       </NavLink>
       <nav>
         <NavLink className="NavLink" to="Films">
-          Movie
+          Films
         </NavLink>
         <NavLink className="NavLink" to="Films">
-          Subscribe
+          S'inscrire
         </NavLink>
         {context.isLogged == true ? (
           <NavLink className="NavLink" to="Admin">
@@ -31,7 +30,7 @@ function Entete(props) {
               name="mdp"
               placeholder="Mot de passe"
             ></input>
-            <button>Login</button>
+            <button>Se connecter</button>
           </form>
         )}
       </nav>
