@@ -1,7 +1,14 @@
+.films-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
 .films-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
+  max-width: 100%;
 }
 
 /* Pour écrans larges (1024px et moins) */
@@ -18,8 +25,8 @@
   }
 }
 
-/* Pour mobiles (375px et moins) */
-@media (max-width: 375px) {
+/* Pour mobiles (620px et moins) */
+@media (max-width: 620px) {
   .films-grid {
     grid-template-columns: 1fr;
   }
