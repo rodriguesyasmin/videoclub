@@ -1,5 +1,26 @@
 .films-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
+}
+
+/* Pour écrans larges (1024px et moins) */
+@media (max-width: 1024px) {
+  .films-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Pour tablettes (768px et moins) */
+@media (max-width: 768px) {
+  .films-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Pour mobiles (375px et moins) */
+@media (max-width: 375px) {
+  .films-grid {
+    grid-template-columns: 1fr;
+  }
 }
