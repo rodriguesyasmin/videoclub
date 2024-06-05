@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Entete from "../Entete/Entete";
 import "./App.css";
@@ -9,15 +9,16 @@ import Films from "../Films/Films";
 import Admin from "../Admin/Admin";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const AppContext = React.createContext();
 
 function App() {
-  // let appState = "DEV";
+  let appState = "DEV";
   let apiUrl = "https://four1f-tp1-rodriguesyasmin.onrender.com/";
-  // if (appState === "DEV") {
-  //   apiUrl = "http://localhost:5501/";
-  // }
+  if (appState === "DEV") {
+    apiUrl = "http://localhost:5501/";
+  }
 
   const location = useLocation();
   const [usager, setUsager] = useState({ estLog: false, usager: {} });
@@ -91,13 +92,12 @@ function App() {
       <Entete handleLogin={login} handleLogout={logout} />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.key}>
+          <Route element={<PrivateRoute />}>
+            <Route path="/admin" element={<Admin></Admin>}></Route>
+          </Route>
           <Route path="/" element={<Accueil />}></Route>
           <Route path="/films" element={<Films />}></Route>
           <Route path="/films/:id" element={<Film />} />
-          <Route
-            path="/admin"
-            element={usager.estLog ? <Admin /> : <Navigate to="/" />}
-          />
         </Routes>
       </AnimatePresence>
     </AppContext.Provider>

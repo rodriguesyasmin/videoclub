@@ -19,9 +19,14 @@ function Entete(props) {
           S'inscrire
         </NavLink>
         {context.isLogged == true ? (
-          <NavLink className="NavLink" to="Admin">
-            <button onClick={props.handleLogout}>Logout</button>
+          <NavLink className="NavLink" to="admin">
+            Page prive
           </NavLink>
+        ) : (
+          ""
+        )}
+        {context.isLogged == true ? (
+          <button onClick={props.handleLogout}>Logout</button>
         ) : (
           <form onSubmit={props.handleLogin}>
             <input tyoe="text" name="courriel" placeholder="Email"></input>
