@@ -73,6 +73,15 @@ h1 {
 .submit-comment button:hover {
   background-color: var(--dark-yellow);
 }
+.delete-button {
+  padding: var(--space-base) var(--space-base);
+  background-color: rgba(100, 3, 3, 0.9);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
 @media (max-width: 768px) {
   .film-container {

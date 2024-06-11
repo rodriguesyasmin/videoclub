@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Star from "../Rating/Rating";
 import { AppContext } from "../App/App";
 import "./Film.css";
@@ -7,6 +7,7 @@ import SoumettreCommentaire from "../Note/Note";
 
 function Film() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [film, setFilm] = useState(null);
   const [userRating, setUserRating] = useState(0);
   const [moyenneRating, setMoyenneRating] = useState("Pas encore noté");
@@ -68,6 +69,29 @@ function Film() {
       }
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async function deleteFilm() {
+    if (window.confirm("Voulez-vous  supprimer ce film ?")) {
+      const token = localStorage.getItem("api-film-token");
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        const response = await fetch(urlFilm, options);
+        if (!response.ok) {
+          throw new Error(`Error ${response.statusText}`);
+        }
+        navigate("/films");
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -136,7 +160,13 @@ function Film() {
                 <strong>Description: </strong>
                 {film.description}
               </p>
+
               <div className="film-comments">
+                {isLogged && (
+                  <button onClick={deleteFilm} className="delete-button">
+                    Supprimer film
+                  </button>
+                )}
                 <h2>Commentaires:</h2>
                 {film.commentaire &&
                 Array.isArray(film.commentaire) &&
@@ -147,7 +177,10 @@ function Film() {
                     ))}
                   </ul>
                 ) : (
-                  <p>Pas encore des commentaires, veuillez se connecter pour faire un commentaire </p>
+                  <p>
+                    Pas encore des commentaires, veuillez se connecter pour
+                    faire un commentaire{" "}
+                  </p>
                 )}
               </div>
             </div>
