@@ -98,3 +98,27 @@ h1 {
     width: 100%;
   }
 }
+
+/* form edit */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-form label {
+  margin-bottom: 10px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.edit-form button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
