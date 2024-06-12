@@ -1,0 +1,57 @@
+.form-ajouter {
+  color: var(--purple);
+  max-width: 70vw;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9c5;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-ajouter div {
+  margin-bottom: 20px;
+}
+
+.form-ajouter label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-ajouter input[type="text"],
+.form-ajouter input[type="file"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+}
+
+.genres label {
+  display: inline-flex; 
+  align-items: center; 
+}
+
+.genres input[type="checkbox"] {
+  margin-right: 5px; 
+}
+
+.form-ajouter button {
+  padding: 10px 20px;
+  background-color: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-ajouter button:hover {
+  background-color: var(--dark-yellow);
+}

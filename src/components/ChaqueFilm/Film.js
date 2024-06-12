@@ -89,7 +89,7 @@ function Film() {
 
   async function deleteFilm() {
     if (window.confirm("Voulez-vous vraiment supprimer ce film ?")) {
-      const token = localStorage.getItem("authToken");
+      const token = localStorage.getItem("api-token");
       const options = {
         method: "DELETE",
         headers: {
@@ -121,7 +121,7 @@ function Film() {
 
   async function EditFilm(e) {
     e.preventDefault();
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("api-token");
     const options = {
       method: "PUT",
       headers: {

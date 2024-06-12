@@ -62,24 +62,24 @@ function App() {
       setUsager(userData);
       localStorage.setItem("api-token", token);
     } else {
-      localStorage.removeItem("api-film-token", token);
+      localStorage.removeItem("api-token", token);
     }
   }
   function logout() {
     setUsager({ isLogged: false });
-    localStorage.removeItem("api-film-token");
+    localStorage.removeItem("api-token");
   }
 
   function jetonValide() {
     try {
-      const token = localStorage.getItem("api-film-token");
+      const token = localStorage.getItem("api-token");
       const decoded = jwtDecode(token);
       // On vérifie si le token est toujours valide
       if (token && Date.now() < decoded.exp * 1000) {
         return true;
       } else {
         // Si le token est expiré, on le supprime du local storage
-        localStorage.removeItem("api-film-token");
+        localStorage.removeItem("api-token");
         return false;
       }
     } catch (error) {

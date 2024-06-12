@@ -58,14 +58,17 @@ function Admin() {
     }
   }
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="form-ajouter">
+      <div>
+        <label htmlFor="titreVignette">Image</label>
+        <input id="titreVignette" name="titreVignette" type="file" />
+      </div>
       <div>
         <label htmlFor="titre">Titre</label>
         <input id="titre" name="titre" type="text" />
       </div>
-
-      <div>
-        <label>Genres</label>
+      <label>Genres</label>
+      <div className="genres">
         {ListeGenres.map((genre) => (
           <div key={genre.id}>
             <input
@@ -93,11 +96,6 @@ function Admin() {
       <div>
         <label htmlFor="realisation">Réalisation</label>
         <input id="realisation" name="realisation" type="text" />
-      </div>
-
-      <div>
-        <label htmlFor="titreVignette">Image</label>
-        <input id="titreVignette" name="titreVignette" type="file" />
       </div>
 
       <button type="submit">Submit</button>
