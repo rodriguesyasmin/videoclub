@@ -14,11 +14,11 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 export const AppContext = React.createContext();
 
 function App() {
-  let appState = "DEV";
+  // let appState = "DEV*";
   let apiUrl = "https://four1f-tp1-rodriguesyasmin.onrender.com/";
-  if (appState === "DEV") {
-    apiUrl = "http://localhost:5501/";
-  }
+  // if (appState === "DEV") {
+  //   apiUrl = "http://localhost:5501/";
+  // }
 
   const location = useLocation();
   const [usager, setUsager] = useState({ estLog: false, usager: {} });
